@@ -1,7 +1,7 @@
 package br.ufrn.imd.model;
 
-public class Fragata extends Ship{
-    public Fragata(char direction){
-        super(4, direction, 'F');
+public class Fragata extends Ship {
+    public Fragata(boolean vertical) {
+        super(4, vertical, 'F');
     }
 }
