@@ -34,23 +34,37 @@ public class Table {
             }
     }
 
-    public boolean addShip(Ship ship, int x, int y) {
+    public boolean checkShip(Ship ship, int x, int y) {
         if (ship.getVertical() == true) {
+            if (ship.getSize() + y > size)
+                return false;
             for (int i = 0; i < ship.getSize(); i++) {
-                if (y + 1 >= size || field[x][y + i].type != 'W')
+                if (field[x][y + i].type != 'W')
                     return false;
             }
+            return true;
+        } else {
+            if (ship.getSize() + x > size)
+                return false;
+            for (int i = 0; i < ship.getSize(); i++) {
+                if (field[x + i][y].type != 'W')
+                    return false;
+            }
+            return true;
+        }
+    }
+
+    public boolean addShip(Ship ship, int x, int y) {
+        if (ship == null)
+            return false;
+        if (ship.getVertical() == true && checkShip(ship, x, y)) {
             for (int i = 0; i < ship.getSize(); i++) {
                 ship.getBlock(i).setX(x);
                 ship.getBlock(i).setY(y + i);
                 field[x][y + i] = ship.getBlock(i);
             }
             return true;
-        } else {
-            for (int i = 0; i < ship.getSize(); i++) {
-                if (x + 1 >= size || field[x + i][y].type != 'W')
-                    return false;
-            }
+        } else if (checkShip(ship, x, y)) {
             for (int i = 0; i < ship.getSize(); i++) {
                 ship.getBlock(i).setX(x + i);
                 ship.getBlock(i).setY(y);
@@ -58,5 +72,6 @@ public class Table {
             }
             return true;
         }
+        return false;
     }
 }
