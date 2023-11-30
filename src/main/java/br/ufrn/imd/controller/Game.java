@@ -19,6 +19,14 @@ public class Game {
     // table.addShip(ship);
     // }
 
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
     public void startTables() {
         tableP1.clear();
         tableP2.clear();
