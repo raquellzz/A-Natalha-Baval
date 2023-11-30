@@ -74,4 +74,53 @@ public class Table {
         }
         return false;
     }
+
+    public boolean checkRotateShip(Ship ship) {
+        if (ship == null)
+            return false;
+        if (ship.getVertical()) {
+            if (ship.getBlock(0).getX() + ship.getSize() > size + 1)
+                return false;
+            for (int i = 1; i < ship.getSize(); i++) {
+                if (field[ship.getBlock(i).getX() + i][ship.getBlock(i).getY()].getType() != 'W')
+                    return false;
+            }
+            return true;
+        } else {
+            if (ship.getBlock(0).getY() + ship.getSize() > size + 1)
+                return false;
+            for (int i = 1; i < ship.getSize(); i++) {
+                if (field[ship.getBlock(i).getX()][ship.getBlock(i).getY() + i].getType() != 'W')
+                    return false;
+            }
+            return true;
+        }
+    }
+
+    public boolean rotateShip(Ship ship) {
+        if (checkRotateShip(ship)) {
+            if (ship.getVertical()) {
+                for (int i = 0; i < ship.getSize(); i++) {
+                    int tempX = ship.getBlock(i).getX();
+                    int tempY = ship.getBlock(i).getY();
+                    ship.getBlock(i).setX(tempX + i);
+                    ship.getBlock(i).setY(tempY);
+                    field[tempX][tempY] = new Block(tempX, tempY);
+                    field[tempX + i][tempY] = ship.getBlock(i);
+                }
+            } else {
+                for (int i = 0; i < ship.getSize(); i++) {
+                    int tempX = ship.getBlock(i).getX();
+                    int tempY = ship.getBlock(i).getY();
+                    ship.getBlock(i).setX(tempX);
+                    ship.getBlock(i).setY(tempY + i);
+                    field[tempX][tempY] = new Block(tempX, tempY);
+                    field[tempX][tempY + i] = ship.getBlock(i);
+                }
+
+            }
+            return true;
+        }
+        return false;
+    }
 }

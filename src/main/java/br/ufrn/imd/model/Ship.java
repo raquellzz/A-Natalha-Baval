@@ -52,4 +52,22 @@ public abstract class Ship {
     public void setBlock(int i, Block block) {
         this.ship.set(i, block);
     }
+
+    public char getType() {
+        return this.ship.get(0).getType();
+    }
+
+    public void setType(char type) {
+        for (Block block : this.ship) {
+            block.setType(type);
+        }
+    }
+
+    public ArrayList<Block> getShip() {
+        return this.ship;
+    }
+
+    public void setShip(ArrayList<Block> ship) {
+        this.ship = ship;
+    }
 }
