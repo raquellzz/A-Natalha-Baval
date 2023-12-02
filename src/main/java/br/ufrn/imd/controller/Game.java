@@ -7,6 +7,7 @@ public class Game {
     private Table tableP2;
     private Player player1;
     private Player player2;
+    private Player turn;
 
     public Game() {
         this.tableP1 = new Table(10);
@@ -30,5 +31,25 @@ public class Game {
     public void startTables() {
         tableP1.clear();
         tableP2.clear();
+    }
+
+    public boolean shoot(int x, int y) {
+        if (turn == player1 && !tableP2.getField()[x][y].getHit()) {
+            tableP2.getField()[x][y].setHit(true);
+            return true;
+        } else {
+            if (!tableP1.getField()[x][y].getHit()) {
+                tableP1.getField()[x][y].setHit(true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void swapTurn() {
+        if (turn == player1)
+            turn = player2;
+        else
+            turn = player1;
     }
 }
