@@ -52,4 +52,11 @@ public class Game {
         else
             turn = player1;
     }
+
+    public void restart() {
+        tableP1.clear();
+        tableP2.clear();
+        player1 = new Player("");
+        player2 = new Player("");
+    }
 }
