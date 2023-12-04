@@ -21,23 +21,33 @@ public class App extends Application {
     public void start(Stage primaryStage) throws IOException {
         stage = primaryStage;
         primaryStage.setTitle("Natalha Baval");
-        
+    
         FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/view/home.fxml"));
         FXMLLoader tableLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/view/table.fxml"));
-        
+    
+        // Instancie o controlador manualmente
+        TableController tableController = new TableController();
+    
+        // Associe o controlador ao FXMLLoader
+        tableLoader.setController(tableController);
+    
+        // Carregue o FXML (depois de configurar o controlador)
         Parent homeRoot = homeLoader.load();
-        homeScene = new Scene(homeRoot, 640, 480);
-
         Parent tableRoot = tableLoader.load();
+    
+        // Configure qualquer funcionalidade adicional no controlador
+        tableController.setupGridPaneClickEvent();
+    
+        homeScene = new Scene(homeRoot, 640, 480);
         detailedScene = new Scene(tableRoot, 640, 480);
-
+    
         homeScene.setRoot(homeRoot);
         detailedScene.setRoot(tableRoot);
-
+    
         primaryStage.setScene(homeScene);
         primaryStage.show();
-        
     }
+    
 
     public static void changeScreen(String src) throws IOException {
         switch (src) {
