@@ -15,18 +15,18 @@ public class TableController implements Initializable{
 
     @FXML
     private void initialize() {
-        // Adiciona um ouvinte de evento onMouseClicked ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
     }
 
     public void setupGridPaneClickEvent() {
-        // Adicione o evento de clique ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
     }
 
     private void handleGridPaneClick(MouseEvent event) {
-        // Lógica a ser executada quando o GridPane for clicado
-        System.out.println("GridPane clicado!");
+        int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
+        int clickedRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount()) + 1;
+
+        System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
     }
 
     @Override
