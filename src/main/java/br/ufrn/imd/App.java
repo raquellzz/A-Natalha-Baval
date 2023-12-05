@@ -38,8 +38,8 @@ public class App extends Application {
         // Configure qualquer funcionalidade adicional no controlador
         tableController.setupGridPaneClickEvent();
     
-        homeScene = new Scene(homeRoot, 640, 480);
-        detailedScene = new Scene(tableRoot, 640, 480);
+        homeScene = new Scene(homeRoot, 741, 400);
+        detailedScene = new Scene(tableRoot, 741, 400);
     
         homeScene.setRoot(homeRoot);
         detailedScene.setRoot(tableRoot);
@@ -54,14 +54,16 @@ public class App extends Application {
             case "Home":
                 stage.setScene(homeScene);
                 break;
-        
+            case "Player":
+                stage.setScene(detailedScene);
+                break;
             case "Table":
                 stage.setScene(detailedScene);
                 break;
             case "Help":
                 stage.setScene(homeScene);
                 break;
-            case "Language":
+            case "Exit":
                 stage.setScene(homeScene);
                 break;
         }

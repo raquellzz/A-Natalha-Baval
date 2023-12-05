@@ -9,8 +9,23 @@ import java.io.IOException;
 public class HomeScreen {
 
     @FXML
+    private Button exitButton;
+
+    @FXML
+    private Button helpButton;
+
+    @FXML
     private Button startButton;
 
+    @FXML
+    void exitGame(ActionEvent event) {
+
+    }
+
+    @FXML
+    void helpGame(ActionEvent event) {
+
+    }
     @FXML
     public void startGame(ActionEvent event) throws IOException{
         System.out.println("Game started!");
