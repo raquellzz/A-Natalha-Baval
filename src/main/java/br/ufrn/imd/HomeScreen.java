@@ -18,19 +18,20 @@ public class HomeScreen {
     private Button startButton;
 
     @FXML
-    void exitGame(ActionEvent event) {
-
+    void exitGame(ActionEvent event) throws IOException{
+        System.exit(0);
     }
 
     @FXML
-    void helpGame(ActionEvent event) {
-
+    void helpGame(ActionEvent event) throws IOException{
+        App.changeScreen("Help");
     }
+
     @FXML
     public void startGame(ActionEvent event) throws IOException{
         System.out.println("Game started!");
         
-        App.changeScreen("Table");
+        App.changeScreen("Players");
     }
 
 }
