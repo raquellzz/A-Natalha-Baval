@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+//import br.ufrn.imd.controller.Game;
 
 import java.io.IOException;
 
@@ -27,12 +28,12 @@ public class App extends Application {
         stage = primaryStage;
         primaryStage.setTitle("Natalha Baval");
     
-        FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/view/home.fxml"));
-        FXMLLoader tableLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/view/table.fxml"));
-        FXMLLoader playersLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/view/players.fxml"));
-        FXMLLoader helpLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/view/help.fxml"));
-        FXMLLoader player1Loader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/view/player1.fxml"));
-        FXMLLoader player2Loader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/view/player2.fxml"));
+        FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/home.fxml"));
+        FXMLLoader tableLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/table.fxml"));
+        FXMLLoader playersLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/players.fxml"));
+        FXMLLoader helpLoader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/help.fxml"));
+        FXMLLoader player1Loader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/player1.fxml"));
+        FXMLLoader player2Loader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/player2.fxml"));
     
         // Instancie o controlador manualmente
         TableController tableController = new TableController();
@@ -64,6 +65,10 @@ public class App extends Application {
         helpScene.setRoot(helpRoot);
         player1Scene.setRoot(player1Root);
         player2Scene.setRoot(player2Root);
+
+        //Game game = new Game();
+
+
     
         primaryStage.setScene(homeScene);
         primaryStage.show();
