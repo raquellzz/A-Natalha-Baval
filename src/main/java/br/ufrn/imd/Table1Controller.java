@@ -1,17 +1,34 @@
 package br.ufrn.imd;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
+import java.io.IOException;
 import java.util.ResourceBundle;
 
-public class TableController implements Initializable{
+public class Table1Controller implements Initializable{
 
     @FXML
     private GridPane gridPane;
+
+    @FXML
+    private Button shootButton;
+
+    @FXML
+    private Button quitButton;
+
+    @FXML
+    void confirmShooting(ActionEvent event) throws IOException{
+        if (App.gameFinished == false){
+            System.out.println("Confirmou o tiro");
+            App.changeScreen("Table 2");
+        }
+    }
 
     @FXML
     private void initialize() {
@@ -45,6 +62,11 @@ public class TableController implements Initializable{
     public void initialize(URL arg0, ResourceBundle arg1) {
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
+    }
+
+    @FXML
+    void quitGame(ActionEvent event) throws IOException{
+        App.changeScreen("GameOver 2");
     }
 
 }

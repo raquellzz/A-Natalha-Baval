@@ -4,26 +4,34 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
-
+import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Player2Positions implements Initializable{
-
-    @FXML
-    private Button confirmButton;
+public class Table2Controller implements Initializable{
 
     @FXML
     private GridPane gridPane;
 
     @FXML
-    void confirmPositions(ActionEvent event) throws IOException{
-        App.changeScreen("Table 1");
-        
+    private Button shootButton;
+
+    @FXML
+    private Button quitButton;
+
+    @FXML
+    void confirmShooting(ActionEvent event) throws IOException{
+        if(App.gameFinished == false){
+            App.changeScreen("Table 1");
+        }
+    }
+
+    @FXML
+    void quitGame(ActionEvent event) throws IOException{
+        App.changeScreen("GameOver 2");
     }
 
     @FXML
