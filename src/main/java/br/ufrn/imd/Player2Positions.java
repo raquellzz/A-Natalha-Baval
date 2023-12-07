@@ -3,10 +3,11 @@ package br.ufrn.imd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
-
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +20,68 @@ public class Player2Positions implements Initializable{
 
     @FXML
     private GridPane gridPane;
+
+    @FXML
+    private CheckBox rotateCButton;
+
+    @FXML
+    private CheckBox rotateDButton;
+
+    @FXML
+    private CheckBox rotateFButton;
+
+    @FXML
+    private CheckBox rotateSButton;
+
+    @FXML
+    private Rectangle corveta;
+
+    @FXML
+    private Rectangle destroyer;
+
+    @FXML
+    private Rectangle fragata;
+
+    @FXML
+    private Rectangle submarino;
+
+    DraggableMaker draggableMaker = new DraggableMaker();
+
+    @FXML
+    void rotateCorveta(ActionEvent event) {
+        if (rotateCButton.isSelected()){
+            corveta.setRotate(90);
+        }else{
+            corveta.setRotate(0);
+        }
+    }
+
+    @FXML
+    void rotateDestroyer(ActionEvent event) {
+        if (rotateDButton.isSelected()){
+            destroyer.setRotate(90);
+        }else{  
+            destroyer.setRotate(0);
+        }
+    }
+
+    @FXML
+    void rotateFragata(ActionEvent event) {
+        if (rotateFButton.isSelected()){
+            fragata.setRotate(90);
+        }else{
+            fragata.setRotate(0);
+        }
+    }
+
+    @FXML
+    void rotateSubmarino(ActionEvent event) {
+        if (rotateSButton.isSelected()){
+            submarino.setRotate(90);
+        }else{
+            submarino.setRotate(0);
+        }
+    }
 
     @FXML
     void confirmPositions(ActionEvent event) throws IOException{
@@ -56,6 +119,11 @@ public class Player2Positions implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        draggableMaker.makeDraggable(corveta);
+        draggableMaker.makeDraggable(destroyer);
+        draggableMaker.makeDraggable(fragata);
+        draggableMaker.makeDraggable(submarino);
+
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }

@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
+
 
 import java.net.URL;
 import java.io.IOException;
@@ -22,10 +24,18 @@ public class Table1Controller implements Initializable{
     @FXML
     private Button quitButton;
 
+    private int clickedColumn1 = 0;
+    private int clickedRow1 = 0;
+    Rectangle rectangle1 = new Rectangle();
+    Rectangle rectangle2 = new Rectangle();
+
+    // arraylist de retangulos para guardar os tiros
+
     @FXML
     void confirmShooting(ActionEvent event) throws IOException{
         if (App.gameFinished == false){
             System.out.println("Confirmou o tiro");
+            gridPane.getChildren().add(rectangle2);
             App.changeScreen("Table 2");
         }
     }
@@ -54,6 +64,18 @@ public class Table1Controller implements Initializable{
         // Lógica a ser executada quando o GridPane for clicado
         int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
         int clickedRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount()) + 1;
+
+        if(clickedColumn1 != clickedColumn && clickedRow1 != clickedRow){
+            gridPane.getChildren().remove(rectangle1);
+
+            rectangle2 = rectangle1;
+            Rectangle rectangle = new Rectangle(40, 40);
+            rectangle.setStyle("-fx-fill: #008080;");
+            gridPane.add(rectangle, clickedColumn - 1, clickedRow - 1);
+            rectangle1 = rectangle;
+        }
+        clickedColumn1 = clickedColumn;
+        clickedRow1 = clickedRow;
 
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
     }
