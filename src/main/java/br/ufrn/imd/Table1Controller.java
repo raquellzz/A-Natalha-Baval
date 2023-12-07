@@ -29,9 +29,6 @@ public class Table1Controller implements Initializable{
     private int clickedColumn1 = 0;
     private int clickedRow1 = 0;
     private Rectangle rectangle1 = new Rectangle();
-    //private Rectangle rectangle2 = new Rectangle();
-
-    // arraylist de retangulos para guardar os tiros
 
     @FXML
     void confirmShooting(ActionEvent event) throws IOException{
@@ -76,7 +73,6 @@ public class Table1Controller implements Initializable{
                 firstClicked = false;
             }else{
                 gridPane.getChildren().remove(rectangle1);
-                //rectangle2 = rectangle1;
                 Rectangle rectangle = new Rectangle(40, 40);
                 rectangle.setStyle("-fx-fill: #008080;");
                 gridPane.add(rectangle, clickedColumn - 1, clickedRow - 1);

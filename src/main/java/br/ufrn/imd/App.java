@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-//import br.ufrn.imd.controller.Game;
 
 import java.io.IOException;
 
@@ -24,6 +23,7 @@ public class App extends Application {
     private static Scene player2Scene;
     private static Scene GameOver1Scene;
     private static Scene GameOver2Scene;
+    
     public static boolean gameFinished = false;
 
 
@@ -74,17 +74,6 @@ public class App extends Application {
         player2Scene = new Scene(player2Root);
         GameOver1Scene = new Scene(GameOver1Root);
         GameOver2Scene = new Scene(GameOver2Root);
-    
-        // homeScene.setRoot(homeRoot);
-        // table1Scene.setRoot(table1Root);
-        // table2Scene.setRoot(table2Root);
-        // playersScene.setRoot(playersRoot);
-        // helpScene.setRoot(helpRoot);
-        // player1Scene.setRoot(player1Root);
-        // player2Scene.setRoot(player2Root);
-
-        //Game game = new Game();
-
 
     
         primaryStage.setScene(homeScene);

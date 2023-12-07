@@ -28,12 +28,7 @@ public class Table2Controller implements Initializable{
 
     private int clickedColumn1 = 0;
     private int clickedRow1 = 0;
-    Rectangle rectangle1 = new Rectangle();
-    //Rectangle rectangle2 = new Rectangle();
-
-    // arraylist de retangulos para guardar os tiros
-
-
+    private Rectangle rectangle1 = new Rectangle();
 
     @FXML
     void confirmShooting(ActionEvent event) throws IOException{
@@ -46,7 +41,7 @@ public class Table2Controller implements Initializable{
 
     @FXML
     void quitGame(ActionEvent event) throws IOException{
-        App.changeScreen("GameOver 2");
+        App.changeScreen("GameOver 1");
     }
 
     @FXML
@@ -85,7 +80,6 @@ public class Table2Controller implements Initializable{
                 firstClicked = false;
             }else{
                 gridPane.getChildren().remove(rectangle1);
-                //rectangle2 = rectangle1;
                 Rectangle rectangle = new Rectangle(40, 40);
                 rectangle.setStyle("-fx-fill: #008080;");
                 gridPane.add(rectangle, clickedColumn - 1, clickedRow - 1);
