@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.fxml.Initializable;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,6 +59,10 @@ public class Table2Controller implements Initializable{
         // Lógica a ser executada quando o GridPane for clicado
         int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
         int clickedRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount()) + 1;
+
+        Rectangle rectangle = new Rectangle(45, 40);
+        rectangle.setStyle("-fx-fill: #000000");
+        gridPane.add(rectangle, clickedColumn - 1, clickedRow -1);
 
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
     }
