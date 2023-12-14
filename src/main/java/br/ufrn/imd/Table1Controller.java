@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
+import java.util.ArrayList;
+import br.ufrn.imd.model.RectangleG;
 
 
 import java.net.URL;
@@ -19,7 +21,7 @@ public class Table1Controller implements Initializable{
     private GridPane gridPane;
 
     @FXML
-    private GridPane gridPane2;
+    private GridPane gridPane2 = App.makeTable2();
 
     @FXML
     private Button shootButton;
@@ -33,26 +35,65 @@ public class Table1Controller implements Initializable{
     private int clickedRow1 = 0;
     private Rectangle rectangle1 = new Rectangle();
 
+    ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
+    
+
     @FXML
     void confirmShooting(ActionEvent event) throws IOException{
         if(App.gameFinished == false){
             System.out.println("Confirmou o tiro");
             firstClicked = true;
+
+            clearGridPane2();
+            setGridPane2();
             
-            Rectangle rectangle = new Rectangle(30, 30);
-            rectangle.setStyle("-fx-fill: #008080;");
-            gridPane2.add(rectangle, clickedColumn1 - 1, clickedRow1 - 1);
-            App.setTable1(gridPane2);
-            gridPane2.equals(App.getTable2());
             
 
             App.changeScreen("Table 2");
         }
     }
 
+    public void setGridPane2(){
+        Rectangle rectangle = new Rectangle(30, 30);
+
+        rectangle.setStyle("-fx-fill: #008080;");
+        RectangleG rectangle2 = new RectangleG(rectangle, clickedColumn1 - 1, clickedRow1 - 1);
+        App.rectangles1.add(rectangle2);
+
+        rectangles.add(rectangle1);
+            //gridPane2.add(rectangle, clickedColumn1 - 1, clickedRow1 - 1);
+            //App.setTable1(gridPane2);
+            
+            //gridPane2.equals(App.getTable2());
+        
+        for(RectangleG r : App.rectangles2){
+            gridPane2.add(r.getRectangle(), r.getX(), r.getY());
+        }
+
+        for(int i = 0; i < App.rectangles2.size(); i++){
+            System.out.println("2X: " + App.rectangles1.get(i).getX() + " 2Y: " + App.rectangles1.get(i).getY());
+        }
+
+        for(int i = 0; i < App.rectangles1.size(); i++){
+            System.out.println("1X: " + App.rectangles1.get(i).getX() + " 1Y: " + App.rectangles1.get(i).getY());
+        }
+    }
+
+    public void clearGridPane2(){
+        for(RectangleG r : App.rectangles2){
+            gridPane2.getChildren().remove(r.getRectangle());
+        }
+    }
+
+    public void clearGridPane1(){
+        for(Rectangle r : rectangles){
+            gridPane.getChildren().remove(r);
+        }
+    }
+
     @FXML
     private void initialize() {
-        gridPane2 = App.getTable2();
+        // gridPane2 = App.getTable2();
         // Adiciona um ouvinte de evento onMouseClicked ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
@@ -79,10 +120,17 @@ public class Table1Controller implements Initializable{
         if(clickedColumn1 != clickedColumn || clickedRow1 != clickedRow){
             if(firstClicked){
                 Rectangle rectangle = new Rectangle(40, 40);
+                
                 rectangle.setStyle("-fx-fill: #008080;");
                 gridPane.add(rectangle, clickedColumn - 1, clickedRow - 1);
                 rectangle1 = rectangle;
                 firstClicked = false;
+
+                // Rectangle rectangle2 = new Rectangle(30, 30);
+                // rectangle2.setStyle("-fx-fill: #008080;");
+                // RectangleG rectangleG = new RectangleG(rectangle2, clickedColumn - 1, clickedRow - 1);
+                // App.rectangles1.add(rectangleG);
+
             }else{
                 gridPane.getChildren().remove(rectangle1);
                 Rectangle rectangle = new Rectangle(40, 40);
@@ -99,12 +147,16 @@ public class Table1Controller implements Initializable{
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        App.setTable1(gridPane2);
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
     @FXML
     void quitGame(ActionEvent event) throws IOException{
+        App.restart = true;
+        clearGridPane2();
+        clearGridPane1();
         App.changeScreen("GameOver 2");
     }
 

@@ -6,9 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
+import java.util.ArrayList;
 
 import java.io.IOException;
 import br.ufrn.imd.controller.Game;
+import br.ufrn.imd.model.RectangleG;
 
 /**
  * JavaFX App
@@ -27,12 +29,15 @@ public class App extends Application {
     private static Scene GameOver2Scene;
     
     public static boolean gameFinished = false;
+    public static boolean restart = false;
 
     public static Game game = new Game();
 
     public static GridPane table1 = new GridPane();
+    public static ArrayList<RectangleG> rectangles1 = new ArrayList<RectangleG>();
 
     public static GridPane table2 = new GridPane();
+    public static ArrayList<RectangleG> rectangles2 = new ArrayList<RectangleG>();
 
 
 
@@ -44,11 +49,17 @@ public class App extends Application {
         App.table2.equals(table2);
     }
 
-    public static GridPane getTable1(){
+    public static GridPane makeTable1(){
+        for(RectangleG r : rectangles1){
+            table1.add(r.getRectangle(), r.getX(), r.getY());
+        }
         return table1;
     }
 
-    public static GridPane getTable2(){
+    public static GridPane makeTable2(){
+        for(RectangleG r : rectangles2){
+            table2.add(r.getRectangle(), r.getX(), r.getY());
+        }
         return table2;
     }
 
