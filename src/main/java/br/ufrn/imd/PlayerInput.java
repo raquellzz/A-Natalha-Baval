@@ -22,9 +22,12 @@ public class PlayerInput {
     void registerNames(ActionEvent event) throws IOException{
         String name1 = namePlayer1.getText();
         String name2 = namePlayer2.getText();
-        
-        System.out.println("Jogador 1: " + name1);
-        System.out.println("Jogador 2: " + name2);
+
+        App.game.getPlayer1().setName(name1);
+        App.game.getPlayer2().setName(name2);
+
+        System.out.println("Jogador 1: " + App.game.getPlayer1().getName());
+        System.out.println("Jogador 2: " + App.game.getPlayer2().getName());
 
         App.changeScreen("Player1");
     }

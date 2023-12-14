@@ -4,9 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
+//import javafx.scene.control.Cell;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ColorPicker;
+//import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -165,7 +165,7 @@ public class Player1Positions implements Initializable{
         int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
         int clickedRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount()) + 1;
 
-        Board.Cell cell = board.getCell(clickedColumn, clickedRow);
+        //Board.Cell cell = board.getCell(clickedColumn, clickedRow);
 
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
     }

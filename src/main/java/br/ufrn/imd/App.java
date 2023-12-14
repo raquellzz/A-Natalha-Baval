@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
+import br.ufrn.imd.controller.Game;
 
 /**
  * JavaFX App
@@ -26,6 +28,29 @@ public class App extends Application {
     
     public static boolean gameFinished = false;
 
+    public static Game game = new Game();
+
+    public static GridPane table1 = new GridPane();
+
+    public static GridPane table2 = new GridPane();
+
+
+
+    public static void setTable1(GridPane table1){
+        App.table1.equals(table1);
+    }
+
+    public static void setTable2(GridPane table2){
+        App.table2.equals(table2);
+    }
+
+    public static GridPane getTable1(){
+        return table1;
+    }
+
+    public static GridPane getTable2(){
+        return table2;
+    }
 
 
     @Override

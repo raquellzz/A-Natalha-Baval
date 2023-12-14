@@ -21,4 +21,25 @@ public class Player {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Ship getShip(int index) {
+        return ships.get(index);
+    }
+
+    public void setShip(int index, Ship ship) {
+        ships.set(index, ship);
+    }
+
+    public ArrayList<Ship> getShips() {
+        return ships;
+    }
+
+    public void setShips(ArrayList<Ship> ships) {
+        this.ships = ships;
+    }
+    
+
 }

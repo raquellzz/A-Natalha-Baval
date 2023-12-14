@@ -59,4 +59,39 @@ public class Game {
         player1 = new Player("");
         player2 = new Player("");
     }
+
+    public void setPlayer1(String name) {
+        player1 = new Player(name);
+    }
+
+    public void setPlayer2(String name) {
+        player2 = new Player(name);
+    }
+
+    public void setTurn(Player player) {
+        turn = player;
+    }
+
+    public Player getTurn() {
+        return turn;
+    }
+
+    public Table getTableP1() {
+        return tableP1;
+    }
+
+    public Table getTableP2() {
+        return tableP2;
+    }
+
+    public void setTableP1(Table tableP1) {
+        this.tableP1 = tableP1;
+    }
+
+    public void setTableP2(Table tableP2) {
+        this.tableP2 = tableP2;
+    }
+
+
+
 }

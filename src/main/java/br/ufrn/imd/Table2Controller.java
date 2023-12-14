@@ -19,6 +19,9 @@ public class Table2Controller implements Initializable{
     private GridPane gridPane;
 
     @FXML
+    private GridPane gridPane2 = App.getTable1();
+
+    @FXML
     private Button shootButton;
 
     @FXML
@@ -35,7 +38,16 @@ public class Table2Controller implements Initializable{
         if(App.gameFinished == false){
             System.out.println("Confirmou o tiro");
             firstClicked = true;
+            
+            Rectangle rectangle = new Rectangle(30, 30);
+            rectangle.setStyle("-fx-fill: #008080;");
+            gridPane2.add(rectangle, clickedColumn1 - 1, clickedRow1 - 1);
+
+            App.setTable2(gridPane2);
+            gridPane2.equals(App.getTable1());
+
             App.changeScreen("Table 1");
+            
         }
     }
 
@@ -46,6 +58,7 @@ public class Table2Controller implements Initializable{
 
     @FXML
     private void initialize() {
+        gridPane2 = App.getTable2();
         // Adiciona um ouvinte de evento onMouseClicked ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
@@ -90,6 +103,21 @@ public class Table2Controller implements Initializable{
         clickedRow1 = clickedRow;
 
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
+    }
+
+    public void wasHit(){
+        for(int i = 0; i < 10; i ++){
+            for(int j = 0; j < 10; j++){
+                if(App.game.getTableP2().getBlock(i, j).getHit() == true){
+                    // Rectangle rectangle = new Rectangle(40, 40);
+                    // rectangle.setStyle("-fx-fill: #FF0000;");
+                    // gridPane.add(rectangle, i, j);
+                    System.out.println("Foi atingido");
+                    break;
+                }
+            }
+        }
+        System.out.println("Não foi atingido");
     }
 
     @Override

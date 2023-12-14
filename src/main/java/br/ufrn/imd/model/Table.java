@@ -2,17 +2,22 @@ package br.ufrn.imd.model;
 
 public class Table {
     private int size = 10;
-    private Block[][] field;
+    private Block[][] field = new Block[10][10];
 
     public Table(int size) {
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++) {
-                field[i][j] = new Block(i, j);
+                Block block = new Block(i, j);
+                field[i][j] = block;
             }
     }
 
     public Block[][] getField() {
         return this.field;
+    }
+
+    public Block getBlock(int x, int y) {
+        return field[x][y];
     }
 
     public void setField(Block[][] field) {

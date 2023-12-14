@@ -19,6 +19,9 @@ public class Table1Controller implements Initializable{
     private GridPane gridPane;
 
     @FXML
+    private GridPane gridPane2;
+
+    @FXML
     private Button shootButton;
 
     @FXML
@@ -32,15 +35,24 @@ public class Table1Controller implements Initializable{
 
     @FXML
     void confirmShooting(ActionEvent event) throws IOException{
-        if (App.gameFinished == false){
+        if(App.gameFinished == false){
             System.out.println("Confirmou o tiro");
             firstClicked = true;
+            
+            Rectangle rectangle = new Rectangle(30, 30);
+            rectangle.setStyle("-fx-fill: #008080;");
+            gridPane2.add(rectangle, clickedColumn1 - 1, clickedRow1 - 1);
+            App.setTable1(gridPane2);
+            gridPane2.equals(App.getTable2());
+            
+
             App.changeScreen("Table 2");
         }
     }
 
     @FXML
     private void initialize() {
+        gridPane2 = App.getTable2();
         // Adiciona um ouvinte de evento onMouseClicked ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
