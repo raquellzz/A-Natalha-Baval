@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -45,7 +46,38 @@ public class Player2Positions implements Initializable{
     @FXML
     private Rectangle submarino;
 
+    @FXML
+    private ToggleButton corvetaB;
+
+
+    @FXML
+    private ToggleButton submarinoB;
+
+
+    @FXML
+    private ToggleButton fragataB;
+
+
+    @FXML
+    private ToggleButton destroyerB;
+
     DraggableMaker draggableMaker = new DraggableMaker();
+
+    @FXML
+    void insertCorveta(ActionEvent event) {
+    }
+
+    @FXML
+    void insertDestroyer(ActionEvent event) {
+    }
+
+    @FXML
+    void insertFragata(ActionEvent event) {
+    }
+
+    @FXML
+    void insertSubmarino(ActionEvent event) {
+    }
 
     @FXML
     void rotateCorveta(ActionEvent event) {
@@ -85,6 +117,7 @@ public class Player2Positions implements Initializable{
 
     @FXML
     void confirmPositions(ActionEvent event) throws IOException{
+        App.table2Pos.equals(gridPane);
         App.changeScreen("Table 1");
         
     }
@@ -113,6 +146,60 @@ public class Player2Positions implements Initializable{
         // Lógica a ser executada quando o GridPane for clicado
         int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
         int clickedRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount()) + 1;
+
+        if(corvetaB.isSelected()){
+            if(rotateCButton.isSelected()){
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(corveta);
+                    gridPane.add(corveta, clickedColumn, clickedRow);
+                }
+            }else{
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(corveta);
+                    gridPane.add(corveta, clickedColumn - 1, clickedRow - 1);
+                }
+            }
+        } else if(submarinoB.isSelected()){
+            if(rotateSButton.isSelected()){
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(submarino);
+                    gridPane.add(submarino, clickedColumn, clickedRow);
+                }
+            }else{
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(submarino);
+                    gridPane.add(submarino, clickedColumn - 1, clickedRow - 1);
+                }
+            }
+
+        } else if(fragataB.isSelected()){
+            if(rotateFButton.isSelected()){
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(fragata);
+                    gridPane.add(fragata, clickedColumn, clickedRow);
+                    }
+            }else{
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(fragata);
+                    gridPane.add(fragata, clickedColumn - 1, clickedRow - 1);
+                }
+            }
+
+        } else if(destroyerB.isSelected()){
+            if(rotateDButton.isSelected()){
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(destroyer);
+                    gridPane.add(destroyer, clickedColumn, clickedRow);
+                    
+                }
+            }else{
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(destroyer);
+                    gridPane.add(destroyer, clickedColumn - 1, clickedRow - 1);
+                
+                }
+            }
+        }
 
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
     }

@@ -34,10 +34,13 @@ public class App extends Application {
     public static Game game = new Game();
 
     public static GridPane table1 = new GridPane();
+    public static GridPane table1Pos = new GridPane();
     public static ArrayList<RectangleG> rectangles1 = new ArrayList<RectangleG>();
 
     public static GridPane table2 = new GridPane();
+    public static GridPane table2Pos = new GridPane();
     public static ArrayList<RectangleG> rectangles2 = new ArrayList<RectangleG>();
+
 
 
 

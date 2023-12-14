@@ -6,17 +6,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 //import javafx.scene.control.Cell;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ToggleButton;
 //import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
+//import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import br.ufrn.imd.utils.Board;
+//import br.ufrn.imd.utils.Board;
 
 public class Player1Positions implements Initializable{
 
@@ -50,11 +51,41 @@ public class Player1Positions implements Initializable{
     @FXML
     private CheckBox rotateSButton;
 
+    @FXML
+    private ToggleButton corvetaB;
+
+
+    @FXML
+    private ToggleButton submarinoB;
+
+
+    @FXML
+    private ToggleButton fragataB;
+
+
+    @FXML
+    private ToggleButton destroyerB;
+
+
 
     DraggableMaker draggableMaker = new DraggableMaker();
-    private Board board;
+    //private Board board;
 
+    @FXML
+    void insertCorveta(ActionEvent event) {
+    }
 
+    @FXML
+    void insertDestroyer(ActionEvent event) {
+    }
+
+    @FXML
+    void insertFragata(ActionEvent event) {
+    }
+
+    @FXML
+    void insertSubmarino(ActionEvent event) {
+    }
 
     @FXML
     void rotateCorverta(ActionEvent event) {
@@ -97,12 +128,14 @@ public class Player1Positions implements Initializable{
 
     @FXML
     void confirmPositions(ActionEvent event) throws IOException{
+        System.out.println("Confirmou as posições");
+        App.table2Pos.equals(gridPane);
+        
         App.changeScreen("Player2");
     }
 
     @FXML
     private void initialize() {
-        
         // Adiciona um ouvinte de evento onMouseClicked ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
@@ -114,27 +147,75 @@ public class Player1Positions implements Initializable{
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
-    /*private void handleGridPaneEnter(MouseEvent event) {
+    private void handleGridPaneEnter(MouseEvent event){
         int enteredColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount());
         int enteredRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount());
 
         System.out.println("Cursor na posição: Coluna " + enteredColumn + ", Linha " + enteredRow);
-
-        Rectangle rectangle = new Rectangle(50, 50 , Color.RED); // Create a rectangle with desired color
-        gridPane.add(rectangle, enteredColumn, enteredRow); // Add the rectangle to the gridPane
     }
-
+    
     private void handleGridPaneClick(MouseEvent event) {
         // Lógica a ser executada quando o GridPane for clicado
         int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
         int clickedRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount()) + 1;
+        
+        if(corvetaB.isSelected()){
+            if(rotateCButton.isSelected()){
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(corveta);
+                    gridPane.add(corveta, clickedColumn, clickedRow);
+                }
+            }else{
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(corveta);
+                    gridPane.add(corveta, clickedColumn - 1, clickedRow - 1);
+                }
+            }
+        } else if(submarinoB.isSelected()){
+            if(rotateSButton.isSelected()){
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(submarino);
+                    gridPane.add(submarino, clickedColumn, clickedRow);
+                }
+            }else{
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(submarino);
+                    gridPane.add(submarino, clickedColumn - 1, clickedRow - 1);
+                }
+            }
 
-        Cell cell = getCell(clickedColumn, clickedRow);
+        } else if(fragataB.isSelected()){
+            if(rotateFButton.isSelected()){
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(fragata);
+                    gridPane.add(fragata, clickedColumn, clickedRow);
+                    }
+            }else{
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(fragata);
+                    gridPane.add(fragata, clickedColumn - 1, clickedRow - 1);
+                }
+            }
 
+        } else if(destroyerB.isSelected()){
+            if(rotateDButton.isSelected()){
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(destroyer);
+                    gridPane.add(destroyer, clickedColumn, clickedRow);
+                    
+                }
+            }else{
+                if(clickedColumn < 10 && clickedRow < 10){
+                    gridPane.getChildren().remove(destroyer);
+                    gridPane.add(destroyer, clickedColumn - 1, clickedRow - 1);
+                
+                }
+            }
+        }
         
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
 
-    }*/
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -143,32 +224,12 @@ public class Player1Positions implements Initializable{
         draggableMaker.makeDraggable(fragata);
         draggableMaker.makeDraggable(submarino);
 
-        board = new Board();
-        gridPane.getChildren().add(board);
 
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
-        private void handleGridPaneClick(MouseEvent event) {
-        int enteredColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount());
-        int enteredRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount());
 
-        System.out.println("Cursor na posição: Coluna " + enteredColumn + ", Linha " + enteredRow);
-
-        Rectangle rectangle = new Rectangle(200, 40 , Color.GREENYELLOW); // Create a rectangle with desired color
-        gridPane.add(rectangle, enteredColumn, enteredRow); // Add the rectangle to the gridPane
-    }
-
-    private void handleGridPaneEnter(MouseEvent event) {
-        // Lógica a ser executada quando o GridPane for clicado
-        int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
-        int clickedRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount()) + 1;
-
-        //Board.Cell cell = board.getCell(clickedColumn, clickedRow);
-
-        System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
-    }
 
 }
 

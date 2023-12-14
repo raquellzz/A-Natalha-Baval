@@ -46,11 +46,6 @@ public class Table2Controller implements Initializable{
 
             clearGridPane2();
             setGridPane2();
-            
-            for(RectangleG r : App.rectangles1){
-                //gridPane2.add(r.getRectangle(), r.getX(), r.getY());
-                System.out.println("X: " + r.getX() + " Y: " + r.getY());
-            }
 
             App.changeScreen("Table 1");
             
@@ -93,13 +88,19 @@ public class Table2Controller implements Initializable{
 
     @FXML
     private void initialize() {
-        //gridPane2 = App.getTable2();
         // Adiciona um ouvinte de evento onMouseClicked ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
     public void setupGridPaneClickEvent() {
+        if(App.restart){
+            clearGridPane1();
+            clearGridPane2();
+            App.rectangles1.clear();
+            App.rectangles2.clear();
+            App.restart = false;
+        }
         // Adicione o evento de clique ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
@@ -127,10 +128,7 @@ public class Table2Controller implements Initializable{
                 rectangle1 = rectangle;
                 firstClicked = false;
 
-                // Rectangle rectangle2 = new Rectangle(30, 30);
-                // rectangle2.setStyle("-fx-fill: #008080;");
-                // RectangleG rectangleG = new RectangleG(rectangle2, clickedColumn - 1, clickedRow - 1);
-                // App.rectangles2.add(rectangleG);
+                
 
             }else{
                 gridPane.getChildren().remove(rectangle1);
