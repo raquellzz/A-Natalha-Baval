@@ -15,7 +15,10 @@ import java.util.ResourceBundle;
 
 import br.ufrn.imd.model.RectangleG;
 
-
+/**
+ * Controller class for the Table 2 screen.
+ * This class is responsible for controlling the Table 2 screen.
+ */
 public class Table2Controller implements Initializable{
 
     @FXML
@@ -38,6 +41,12 @@ public class Table2Controller implements Initializable{
 
     ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
 
+    /**
+     * Handles the shoot button action.
+     * Changes the screen to the Table 1 screen when the shoot button is clicked.
+     * @param event The action event triggered by the shoot button.
+     * @throws IOException
+     */
     @FXML
     void confirmShooting(ActionEvent event) throws IOException{
         if(App.gameFinished == false){
@@ -52,6 +61,9 @@ public class Table2Controller implements Initializable{
         }
     }
 
+    /**
+     * Creates a rectangle and adds it to the gridPane2.
+     */
     public void setGridPane2(){
         Rectangle rectangle = new Rectangle(30, 30);
         rectangle.setStyle("-fx-fill: #008080;");
@@ -66,18 +78,30 @@ public class Table2Controller implements Initializable{
         }
     }
 
+    /**
+     * Removes all the rectangles from the gridPane2.
+     */
     public void clearGridPane2(){
         for(RectangleG r : App.rectangles1){
             gridPane2.getChildren().remove(r.getRectangle());
         }
     }
 
+    /**
+     * Removes all the rectangles from the gridPane1.
+     */
     public void clearGridPane1(){
         for(Rectangle r : rectangles){
             gridPane.getChildren().remove(r);
         }
     }
 
+    /**
+     * Handles the quit button action.
+     * Changes the screen to the Game Over screen when the quit button is clicked.
+     * @param event The action event triggered by the quit button.
+     * @throws IOException
+     */
     @FXML
     void quitGame(ActionEvent event) throws IOException{
         App.restart = true;
@@ -86,6 +110,11 @@ public class Table2Controller implements Initializable{
         App.changeScreen("GameOver 1");
     }
 
+    /**
+     * Initializes the Table 2 screen.
+     * @param arg0
+     * @param arg1
+     */
     @FXML
     private void initialize() {
         // Adiciona um ouvinte de evento onMouseClicked ao GridPane
@@ -93,6 +122,10 @@ public class Table2Controller implements Initializable{
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
+    /**
+     * Handles the mouse click event.
+     * @param event The mouse event triggered by the mouse click.
+     */
     public void setupGridPaneClickEvent() {
         if(App.restart){
             clearGridPane1();
@@ -106,6 +139,10 @@ public class Table2Controller implements Initializable{
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
+    /**
+     * Handles the mouse click event.
+     * @param event The mouse event triggered by the mouse click.
+     */
     private void handleGridPaneEnter(MouseEvent event){
         int enteredColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount());
         int enteredRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount());
@@ -113,6 +150,10 @@ public class Table2Controller implements Initializable{
         System.out.println("Cursor na posição: Coluna " + enteredColumn + ", Linha " + enteredRow);
     }
 
+    /**
+     * Handles the mouse click event.
+     * @param event The mouse event triggered by the mouse click.
+     */
     private void handleGridPaneClick(MouseEvent event) {
         // Lógica a ser executada quando o GridPane for clicado
         int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
@@ -144,6 +185,9 @@ public class Table2Controller implements Initializable{
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
     }
 
+    /**
+     * Checks if the player was hit.
+     */
     public void wasHit(){
         for(int i = 0; i < 10; i ++){
             for(int j = 0; j < 10; j++){
@@ -159,6 +203,11 @@ public class Table2Controller implements Initializable{
         System.out.println("Não foi atingido");
     }
 
+    /**
+     * Initializes the Table 2 screen.
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         App.setTable2(gridPane2);

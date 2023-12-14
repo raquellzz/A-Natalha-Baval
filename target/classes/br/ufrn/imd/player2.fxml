@@ -144,10 +144,10 @@
                   <Font name="DejaVu Serif Bold" size="16.0" />
                </font>
             </CheckBox>
-            <ToggleButton fx:id="corvetaB" layoutX="731.0" layoutY="126.0" mnemonicParsing="false" onAction="#insertCorveta" prefHeight="40.0" prefWidth="147.0" text="corveta" />
-            <ToggleButton fx:id="submarinoB" layoutX="731.0" layoutY="197.0" mnemonicParsing="false" onAction="#insertSubmarino" prefHeight="40.0" prefWidth="147.0" text="submarino" />
-            <ToggleButton fx:id="fragataB" layoutX="731.0" layoutY="267.0" mnemonicParsing="false" onAction="#insertFragata" prefHeight="40.0" prefWidth="147.0" text="fragata" />
-            <ToggleButton fx:id="destroyerB" layoutX="731.0" layoutY="336.0" mnemonicParsing="false" onAction="#insertDestroyer" prefHeight="40.0" prefWidth="147.0" text="destroyer" />
+            <ToggleButton fx:id="corvetaB" layoutX="731.0" layoutY="126.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="corveta" />
+            <ToggleButton fx:id="submarinoB" layoutX="731.0" layoutY="197.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="submarino" />
+            <ToggleButton fx:id="fragataB" layoutX="731.0" layoutY="267.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="fragata" />
+            <ToggleButton fx:id="destroyerB" layoutX="731.0" layoutY="336.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="destroyer" />
          </children>
     </AnchorPane>
   </children>

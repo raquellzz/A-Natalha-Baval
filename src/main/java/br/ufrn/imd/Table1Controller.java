@@ -15,6 +15,10 @@ import java.net.URL;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the Table 1 screen.
+ * This class is responsible for controlling the Table 1 screen.
+ */
 public class Table1Controller implements Initializable{
 
     @FXML
@@ -38,6 +42,12 @@ public class Table1Controller implements Initializable{
     ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
     
 
+    /**
+     * Handles the shoot button action.
+     * Changes the screen to the Table 2 screen when the shoot button is clicked.
+     * @param event The action event triggered by the shoot button.
+     * @throws IOException
+     */
     @FXML
     void confirmShooting(ActionEvent event) throws IOException{
         if(App.gameFinished == false){
@@ -53,6 +63,10 @@ public class Table1Controller implements Initializable{
         }
     }
 
+    /**
+     * Creates a gridpane with the rectangles that were shot
+     * 
+     */
     public void setGridPane2(){
         Rectangle rectangle = new Rectangle(30, 30);
 
@@ -71,18 +85,27 @@ public class Table1Controller implements Initializable{
         }
     }
 
+    /**
+     * Clear the GridPane 2
+     */
     public void clearGridPane2(){
         for(RectangleG r : App.rectangles2){
             gridPane2.getChildren().remove(r.getRectangle());
         }
     }
 
+    /**
+     * Clear the GridPane 1
+     */
     public void clearGridPane1(){
         for(Rectangle r : rectangles){
             gridPane.getChildren().remove(r);
         }
     }
 
+    /**
+     * Initializes the Table1 screen.
+     */
     @FXML
     private void initialize() {
         
@@ -91,6 +114,9 @@ public class Table1Controller implements Initializable{
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
+    /**
+     * Sets the click event to the GridPane.
+     */
     public void setupGridPaneClickEvent() {
         if(App.restart){
             clearGridPane1();
@@ -104,6 +130,10 @@ public class Table1Controller implements Initializable{
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
+    /**
+     * Handles the GridPane click event.
+     * @param event The mouse event triggered by the GridPane.
+     */
     private void handleGridPaneEnter(MouseEvent event){
         int enteredColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount());
         int enteredRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount());
@@ -111,6 +141,10 @@ public class Table1Controller implements Initializable{
         System.out.println("Cursor na posição: Coluna " + enteredColumn + ", Linha " + enteredRow);
     }
 
+    /**
+     * Handles the GridPane click event.
+     * @param event The mouse event triggered by the GridPane.
+     */
     private void handleGridPaneClick(MouseEvent event) {
         // Lógica a ser executada quando o GridPane for clicado
         int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
@@ -140,6 +174,9 @@ public class Table1Controller implements Initializable{
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
     }
 
+    /**
+     * Initializes the Table1 screen.
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         App.setTable1(gridPane2);
@@ -147,6 +184,12 @@ public class Table1Controller implements Initializable{
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
+    /**
+     * Handles the quit button action.
+     * Changes the screen to the Game Over screen when the quit button is clicked.
+     * @param event The action event triggered by the quit button.
+     * @throws IOException
+     */
     @FXML
     void quitGame(ActionEvent event) throws IOException{
         App.restart = true;

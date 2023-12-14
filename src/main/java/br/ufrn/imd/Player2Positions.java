@@ -14,6 +14,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the Player 2 Positions screen.
+ * This class is responsible for controlling the Player 2 Positions screen.
+ */
 public class Player2Positions implements Initializable{
 
     @FXML
@@ -63,22 +67,12 @@ public class Player2Positions implements Initializable{
 
     DraggableMaker draggableMaker = new DraggableMaker();
 
-    @FXML
-    void insertCorveta(ActionEvent event) {
-    }
-
-    @FXML
-    void insertDestroyer(ActionEvent event) {
-    }
-
-    @FXML
-    void insertFragata(ActionEvent event) {
-    }
-
-    @FXML
-    void insertSubmarino(ActionEvent event) {
-    }
-
+    /**
+     * Handles the rotate corveta button action.
+     * Rotates the corveta when the rotate corveta button is clicked.
+     * 
+     * @param event
+     */
     @FXML
     void rotateCorveta(ActionEvent event) {
         if (rotateCButton.isSelected()){
@@ -88,6 +82,12 @@ public class Player2Positions implements Initializable{
         }
     }
 
+    /**
+     * Handles the rotate destroyer button action.
+     * Rotates the destroyer when the rotate destroyer button is clicked.
+     * 
+     * @param event
+     */
     @FXML
     void rotateDestroyer(ActionEvent event) {
         if (rotateDButton.isSelected()){
@@ -97,6 +97,12 @@ public class Player2Positions implements Initializable{
         }
     }
 
+    /**
+     * Handles the rotate fragata button action.
+     * Rotates the fragata when the rotate fragata button is clicked.
+     * 
+     * @param event
+     */
     @FXML
     void rotateFragata(ActionEvent event) {
         if (rotateFButton.isSelected()){
@@ -106,6 +112,12 @@ public class Player2Positions implements Initializable{
         }
     }
 
+    /**
+     * Handles the rotate submarino button action.
+     * Rotates the submarino when the rotate submarino button is clicked.
+     * 
+     * @param event
+     */
     @FXML
     void rotateSubmarino(ActionEvent event) {
         if (rotateSButton.isSelected()){
@@ -115,6 +127,13 @@ public class Player2Positions implements Initializable{
         }
     }
 
+    /**
+     * Handles the confirm positions button action.
+     * Changes the screen to the Table 1 screen when the confirm positions button is clicked.
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void confirmPositions(ActionEvent event) throws IOException{
         App.table2Pos.equals(gridPane);
@@ -122,6 +141,11 @@ public class Player2Positions implements Initializable{
         
     }
 
+    /**
+     * Handles the back button action.
+     * Changes the screen to the Home screen when the back button is clicked.
+     * 
+     */
     @FXML
     private void initialize() {
         // Adiciona um ouvinte de evento onMouseClicked ao GridPane
@@ -129,12 +153,21 @@ public class Player2Positions implements Initializable{
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
+    /**
+     * Handles the back button action.
+     * 
+     */
     public void setupGridPaneClickEvent() {
         // Adicione o evento de clique ao GridPane
         gridPane.setOnMouseClicked(this::handleGridPaneClick);
         gridPane.setOnMouseEntered(this::handleGridPaneEnter);
     }
 
+    /**
+     * Handles the grid pane click event.
+     * 
+     * @param event
+     */
     private void handleGridPaneEnter(MouseEvent event){
         int enteredColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount());
         int enteredRow = (int) (event.getY() / gridPane.getHeight() * gridPane.getRowCount());
@@ -142,6 +175,11 @@ public class Player2Positions implements Initializable{
         System.out.println("Cursor na posição: Coluna " + enteredColumn + ", Linha " + enteredRow);
     }
 
+    /**
+     * Handles the grid pane click event.
+     * 
+     * @param event
+     */
     private void handleGridPaneClick(MouseEvent event) {
         // Lógica a ser executada quando o GridPane for clicado
         int clickedColumn = (int) (event.getX() / gridPane.getWidth() * gridPane.getColumnCount()) + 1;
@@ -204,6 +242,12 @@ public class Player2Positions implements Initializable{
         System.out.println("Clicou na posição: Coluna " + clickedColumn + ", Linha " + clickedRow);
     }
 
+    /**
+     * Initializes the Player 2 Positions screen.
+     * 
+     * @param arg0
+     * @param arg1
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         draggableMaker.makeDraggable(corveta);

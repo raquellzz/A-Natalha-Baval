@@ -13,7 +13,8 @@ import br.ufrn.imd.controller.Game;
 import br.ufrn.imd.model.RectangleG;
 
 /**
- * JavaFX App
+ * The main class of the Natalha Baval application.
+ * This class extends the JavaFX Application class and is responsible for starting the application and managing the scenes.
  */
 public class App extends Application {
     private static Stage stage;
@@ -41,17 +42,26 @@ public class App extends Application {
     public static GridPane table2Pos = new GridPane();
     public static ArrayList<RectangleG> rectangles2 = new ArrayList<RectangleG>();
 
-
-
-
+    /**
+     * Sets the table1 GridPane.
+     * @param table1 The GridPane representing table1.
+     */
     public static void setTable1(GridPane table1){
         App.table1.equals(table1);
     }
 
+    /**
+     * Sets the table2 GridPane.
+     * @param table2 The GridPane representing table2.
+     */
     public static void setTable2(GridPane table2){
         App.table2.equals(table2);
     }
 
+    /**
+     * Creates and returns the GridPane representation of table1.
+     * @return The GridPane representing table1.
+     */
     public static GridPane makeTable1(){
         for(RectangleG r : rectangles1){
             table1.add(r.getRectangle(), r.getX(), r.getY());
@@ -59,6 +69,10 @@ public class App extends Application {
         return table1;
     }
 
+    /**
+     * Creates and returns the GridPane representation of table2.
+     * @return The GridPane representing table2.
+     */
     public static GridPane makeTable2(){
         for(RectangleG r : rectangles2){
             table2.add(r.getRectangle(), r.getX(), r.getY());
@@ -66,7 +80,11 @@ public class App extends Application {
         return table2;
     }
 
-
+    /**
+     * Starts the Natalha Baval application.
+     * @param primaryStage The primary stage for the application.
+     * @throws IOException If an error occurs while loading the FXML files.
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         stage = primaryStage;
@@ -82,8 +100,6 @@ public class App extends Application {
         FXMLLoader GameOver1Loader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/gameover1.fxml"));
         FXMLLoader GameOver2Loader = new FXMLLoader(getClass().getResource("/br/ufrn/imd/gameover2.fxml"));
 
-
-    
         // Instancie o controlador manualmente
         Table1Controller table1Controller = new Table1Controller();
     
@@ -114,12 +130,16 @@ public class App extends Application {
         GameOver1Scene = new Scene(GameOver1Root);
         GameOver2Scene = new Scene(GameOver2Root);
 
-    
         primaryStage.setScene(homeScene);
         primaryStage.show();
     }
     
 
+    /**
+     * Changes the current scene to the specified scene.
+     * @param src The name of the scene to change to.
+     * @throws IOException If an error occurs while loading the FXML file for the specified scene.
+     */
     public static void changeScreen(String src) throws IOException {
         switch (src) {
             case "Home":
@@ -152,15 +172,30 @@ public class App extends Application {
         }
     }
 
+    /**
+     * Sets the root of the home scene to the specified FXML file.
+     * @param fxml The name of the FXML file to set as the root.
+     * @throws IOException If an error occurs while loading the FXML file.
+     */
     static void setRoot(String fxml) throws IOException {
         homeScene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * Loads the FXML file with the specified name and returns the root node.
+     * @param fxml The name of the FXML file to load.
+     * @return The root node of the loaded FXML file.
+     * @throws IOException If an error occurs while loading the FXML file.
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    /**
+     * The main method of the Natalha Baval application.
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         launch();
     }

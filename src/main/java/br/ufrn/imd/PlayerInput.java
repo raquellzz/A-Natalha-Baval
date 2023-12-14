@@ -7,6 +7,10 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the Player Input screen.
+ * This class is responsible for controlling the Player Input screen.
+ */
 public class PlayerInput {
 
     @FXML
@@ -18,6 +22,13 @@ public class PlayerInput {
     @FXML
     private TextField namePlayer2;
 
+    /**
+     * Handles the confirm button action.
+     * Changes the screen to the Player 1 screen when the confirm button is clicked.
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void registerNames(ActionEvent event) throws IOException{
         String name1 = namePlayer1.getText();
